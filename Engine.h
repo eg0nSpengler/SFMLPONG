@@ -28,16 +28,12 @@ private:
 	float balldx;
 	float balldy;
 	sf::RenderWindow window;
-	//sf::RectangleShape rectOne;
 	Actor player;
 	Actor topBounds;
 	Actor bottomBounds;
 	Actor rightBounds;
 	Actor leftBounds;
 	Actor ball;
-	//sf::RectangleShape rightBounds;
-	//sf::RectangleShape leftBounds;
-	//sf::RectangleShape ball;
 
 };
 
