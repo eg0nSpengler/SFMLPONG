@@ -3,7 +3,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include "Paddle.h"
+#include "Actor.h"
 class Engine
 {
 public:
@@ -28,12 +28,16 @@ private:
 	float balldx;
 	float balldy;
 	sf::RenderWindow window;
-	Paddle player;
-	sf::RectangleShape topBounds;
-	sf::RectangleShape bottomBounds;
-	sf::RectangleShape rightBounds;
-	sf::RectangleShape leftBounds;
-	sf::RectangleShape ball;
+	//sf::RectangleShape rectOne;
+	Actor player;
+	Actor topBounds;
+	Actor bottomBounds;
+	Actor rightBounds;
+	Actor leftBounds;
+	Actor ball;
+	//sf::RectangleShape rightBounds;
+	//sf::RectangleShape leftBounds;
+	//sf::RectangleShape ball;
 
 };
 

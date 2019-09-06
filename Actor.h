@@ -2,17 +2,16 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-class Paddle
+class Actor
 {
-	Paddle() = default;
-	~Paddle();
-
-
+public:
+	Actor();
+	Actor(sf::Vector2f size, sf::Color col, float thick, sf::Vector2f pos);
+	sf::RectangleShape rect;
 private:
-	sf::RectangleShape paddle;
 	sf::Vector2f size;
 	sf::Color col;
-	float thickness;
+	float thick;
 	sf::Vector2f pos;
 
 

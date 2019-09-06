@@ -1,37 +1,19 @@
 #include "Engine.h"
 
-Engine::Engine(int windowWidth, int windowHeight) : window(sf::VideoMode(windowWidth, windowHeight), "Pong"), topBounds(), bottomBounds(), rightBounds(), leftBounds(), ball()
+Engine::Engine(int windowWidth, int windowHeight) :
+	window(sf::VideoMode(windowWidth, windowHeight), "Pong"), 
+	player(sf::Vector2f(20.0f, 90.f), sf::Color::White, 2.0f, sf::Vector2f(30.f, windowHeight / 2)), 
+	topBounds(sf::Vector2f(windowWidth, 0.0f), sf::Color::Green, 2.0f, sf::Vector2f(0.0f, 0.0f)),
+	bottomBounds(sf::Vector2f(windowWidth, 0.0f), sf::Color::Green, 2.0f, sf::Vector2f(0.0f, 480)),
+	rightBounds(sf::Vector2f(0.0f, windowHeight), sf::Color::Green, 2.0f, sf::Vector2f(windowWidth, 0.0f)),
+	leftBounds(sf::Vector2f(0.0f, windowHeight), sf::Color::Green, 2.0f, sf::Vector2f(0.0f, 0.0f)),
+	ball(sf::Vector2f(5.0f, 5.0f), sf::Color::White, 2.0f, sf::Vector2f(windowWidth / 2, windowHeight / 2))
 {
 	std::cout << "Engine object constructed!" << std::endl;
-
-	/*rectOne.setSize(sf::Vector2f(20.0f, 90.0f));
-	rectOne.setOutlineColor(sf::Color::White);
-	rectOne.setOutlineThickness(2.0f);
-	rectOne.setPosition(sf::Vector2f(30.0f, windowHeight / 2));*/
-	topBounds.setSize(sf::Vector2f(windowWidth, 0.0f));
-	topBounds.setOutlineColor(sf::Color::Green);
-	topBounds.setOutlineThickness(2.0f);
-	topBounds.setPosition(sf::Vector2f(0.0f, 0.0f));
-	bottomBounds.setSize(sf::Vector2f(windowWidth, 0.0f));
-	bottomBounds.setOutlineColor(sf::Color::Green);
-	bottomBounds.setOutlineThickness(2.0f);
-	bottomBounds.setPosition(sf::Vector2f(0.0f, 480));
-	rightBounds.setSize(sf::Vector2f(0.0f, windowHeight));
-	rightBounds.setOutlineColor(sf::Color::Green);
-	rightBounds.setOutlineThickness(2.0f);
-	rightBounds.setPosition(sf::Vector2f(windowWidth, 0.0f));
-	leftBounds.setSize(sf::Vector2f(0.0f, windowHeight));
-	leftBounds.setOutlineColor(sf::Color::Green);
-	leftBounds.setOutlineThickness(2.0f);
-	leftBounds.setPosition(sf::Vector2f(0.0f, 0.0f));
-	ball.setSize(sf::Vector2f(5.0f, 5.0f));
-	ball.setOutlineColor(sf::Color::White);
-	ball.setOutlineThickness(2.0f);
-	ball.setPosition(sf::Vector2f(windowWidth / 2, windowHeight / 2));
-	dx = rectOne.getPosition().x;
-	dy = rectOne.getPosition().y;
-	balldx = ball.getPosition().x;
-	balldy = ball.getPosition().y;
+	dx = player.rect.getPosition().x;
+	dy = player.rect.getPosition().y;
+	balldx = ball.rect.getPosition().x;
+	balldy = ball.rect.getPosition().y;
 }
 
 Engine::~Engine()
@@ -48,7 +30,7 @@ void Engine::Handle_Events()
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{	
-		if (rectOne.getGlobalBounds().top)
+		if (player.rect.getGlobalBounds().top)
 		{
 		dy--;
 		}
@@ -56,7 +38,7 @@ void Engine::Handle_Events()
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		if (rectOne.getGlobalBounds().intersects(bottomBounds.getGlobalBounds()))
+		if (player.rect.getGlobalBounds().intersects(bottomBounds.rect.getGlobalBounds()))
 		{
 			dy--;
 		}
@@ -66,18 +48,18 @@ void Engine::Handle_Events()
 
 void Engine::Update()
 {
-	rectOne.setPosition(dx, dy);
+	player.rect.setPosition(dx, dy);
 }
 
 void Engine::Render()
 {
 	window.clear(sf::Color::Black);
-	window.draw(rectOne);
-	window.draw(topBounds);
-	window.draw(bottomBounds);
-	window.draw(rightBounds);
-	window.draw(leftBounds);
-	window.draw(ball);
+	window.draw(player.rect);
+	window.draw(topBounds.rect);
+	window.draw(bottomBounds.rect);
+	window.draw(rightBounds.rect);
+	window.draw(leftBounds.rect);
+	window.draw(ball.rect);
 	window.display(); 
 	
 }
