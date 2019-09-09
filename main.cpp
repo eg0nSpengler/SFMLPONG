@@ -2,7 +2,7 @@
 
 int main()
 {
-	Engine eng(640, 480);
+	Engine eng(320, 320);
 	eng.Run();	
 	return 0;
 }
