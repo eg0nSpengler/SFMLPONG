@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <iostream>
+#include <random>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "Actor.h"
@@ -11,48 +12,10 @@ public:
 	~Engine();
 
 	void Handle_Events();
-	void Handle_Collisions();
-	void BallUpdate()
-	{
-		
-		if (gm == STATE_PLAY)
-		{
-			switch (dir)
-			{
-			case CENTER:
-				{
-					ball.rect.setPosition(windowWidth / 2, windowHeight / 2);
-					break;
-				}
-			case NORTH:
-				{
-					balldy--;
-					ball.rect.setPosition(balldx, balldy);
-					if (ball.rect.getGlobalBounds().intersects(topBounds.rect.getGlobalBounds()))
-					{
-						balldy++;
-						dir = SOUTH;
-					}
-					break;
-				}
-			case SOUTH:
-				{
-					balldy++;
-					ball.rect.setPosition(balldx, balldy);
-					if (ball.rect.getGlobalBounds().intersects(bottomBounds.rect.getGlobalBounds()))
-					{
-						balldy--;
-						dir = NORTH;
-					}
-					break;
-				}
-			default:
-				{
-					break;
-				}
-			}
-		}
-	};
+	bool Handle_Collisions(Actor actA, Actor actB);
+	bool IsAtPoint(Actor actA, Actor actB);
+	void BallUpdate();
+	void AIUpdate();
 	void Update();
 	void Render();
 	void Run();
@@ -90,6 +53,7 @@ private:
 	sf::Time dTime;
 	sf::Time dTimeSinceStart;
 	Actor player;
+	Actor aiPaddle;
 	Actor topBounds;
 	Actor bottomBounds;
 	Actor rightBounds;
