@@ -1,0 +1,362 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="SuppressVersion">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="CurrentVersion" type="xs:int" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="SFMLPong">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="FileName" type="xs:string" default="" />
+                <xs:element name="ErrorCode" type="xs:string" default="" />
+                <xs:element name="Message" type="xs:string" default="" />
+                <xs:element name="CodePrev" type="xs:unsignedInt" default="0" />
+                <xs:element name="CodeCurrent" type="xs:unsignedInt" default="0" />
+                <xs:element name="CodeNext" type="xs:unsignedInt" default="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//SFMLPong" />
+        <xs:field xpath="FileName" />
+        <xs:field xpath="ErrorCode" />
+        <xs:field xpath="Message" />
+        <xs:field xpath="CodePrev" />
+        <xs:field xpath="CodeCurrent" />
+        <xs:field xpath="CodeNext" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <SuppressVersion>
+    <CurrentVersion>2</CurrentVersion>
+  </SuppressVersion>
+  <SFMLPong>
+    <FileName>FileInputStream.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>43</CodePrev>
+    <CodeCurrent>1183676274</CodeCurrent>
+    <CodeNext>100</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Font.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>58314551</CodePrev>
+    <CodeCurrent>987541498</CodeCurrent>
+    <CodeNext>4177566540</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Font.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>987541498</CodePrev>
+    <CodeCurrent>4177566540</CodeCurrent>
+    <CodeNext>424063382</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Font.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>4177566540</CodePrev>
+    <CodeCurrent>424063382</CodeCurrent>
+    <CodeNext>549603481</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>RenderTexture.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>1342177307</CodePrev>
+    <CodeCurrent>2233380456</CodeCurrent>
+    <CodeNext>298130165</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Sprite.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>999480044</CodePrev>
+    <CodeCurrent>574345522</CodeCurrent>
+    <CodeNext>205724385</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Text.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>1608781027</CodePrev>
+    <CodeCurrent>2593990045</CodeCurrent>
+    <CodeNext>14596509</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>VertexBuffer.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>593063862</CodePrev>
+    <CodeCurrent>3623196404</CodeCurrent>
+    <CodeNext>480347149</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Engine.h</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>4181864788</CodePrev>
+    <CodeCurrent>941132561</CodeCurrent>
+    <CodeNext>58820305</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Engine.h</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>941132561</CodePrev>
+    <CodeCurrent>58820305</CodeCurrent>
+    <CodeNext>117642833</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Engine.h</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>58820305</CodePrev>
+    <CodeCurrent>117642833</CodeCurrent>
+    <CodeNext>117642839</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Engine.h</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>117642833</CodePrev>
+    <CodeCurrent>117642839</CodeCurrent>
+    <CodeNext>193</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Engine.cpp</FileName>
+    <ErrorCode>V807</ErrorCode>
+    <Message>Decreased performance. Consider creating a reference to avoid using the 'player_-&gt;rect' expression repeatedly.</Message>
+    <CodePrev>0</CodePrev>
+    <CodeCurrent>1724887698</CodeCurrent>
+    <CodeNext>1711521426</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Engine.cpp</FileName>
+    <ErrorCode>V807</ErrorCode>
+    <Message>Decreased performance. Consider creating a reference to avoid using the 'player_-&gt;rect' expression repeatedly.</Message>
+    <CodePrev>1724887698</CodePrev>
+    <CodeCurrent>1711521426</CodeCurrent>
+    <CodeNext>506024661</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Engine.cpp</FileName>
+    <ErrorCode>V807</ErrorCode>
+    <Message>Decreased performance. Consider creating a reference to avoid using the 'ball-&gt;rect' expression repeatedly.</Message>
+    <CodePrev>1711521426</CodePrev>
+    <CodeCurrent>506024661</CodeCurrent>
+    <CodeNext>125</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Engine.cpp</FileName>
+    <ErrorCode>V807</ErrorCode>
+    <Message>Decreased performance. Consider creating a reference to avoid using the 'player_-&gt;rect' expression repeatedly.</Message>
+    <CodePrev>0</CodePrev>
+    <CodeCurrent>1626192015</CodeCurrent>
+    <CodeNext>0</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Engine.cpp</FileName>
+    <ErrorCode>V567</ErrorCode>
+    <Message>The modification of the 'ballAngle' variable is unsequenced relative to another operation on the same variable. This may lead to undefined behavior.</Message>
+    <CodePrev>123</CodePrev>
+    <CodeCurrent>139100345</CodeCurrent>
+    <CodeNext>125</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Engine.cpp</FileName>
+    <ErrorCode>V807</ErrorCode>
+    <Message>Decreased performance. Consider creating a reference to avoid using the 'window.getSize()' expression repeatedly.</Message>
+    <CodePrev>1382499862</CodePrev>
+    <CodeCurrent>41487308</CodeCurrent>
+    <CodeNext>1096328369</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Font.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>2515228785</CodePrev>
+    <CodeCurrent>58314551</CodeCurrent>
+    <CodeNext>987541498</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Utf.inl</FileName>
+    <ErrorCode>V524</ErrorCode>
+    <Message>It is odd that the body of 'toUtf_' function is fully equivalent to the body of 'fromLatin_' function.</Message>
+    <CodePrev>2150770401</CodePrev>
+    <CodeCurrent>2806589068</CodeCurrent>
+    <CodeNext>123</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Font.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>1342177307</CodePrev>
+    <CodeCurrent>2515228785</CodeCurrent>
+    <CodeNext>58314551</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Shape.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>1342177307</CodePrev>
+    <CodeCurrent>2434656260</CodeCurrent>
+    <CodeNext>205724385</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>MemoryInputStream.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>1342177307</CodePrev>
+    <CodeCurrent>2357434660</CodeCurrent>
+    <CodeNext>1983238837</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Mutex.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>1342177307</CodePrev>
+    <CodeCurrent>351158804</CodeCurrent>
+    <CodeNext>193</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Utf.inl</FileName>
+    <ErrorCode>V1048</ErrorCode>
+    <Message>The 'bytestoWrite' variable was assigned the same value.</Message>
+    <CodePrev>2901261797</CodePrev>
+    <CodeCurrent>2485534176</CodeCurrent>
+    <CodeNext>3900063086</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Utf.inl</FileName>
+    <ErrorCode>V112</ErrorCode>
+    <Message>Dangerous magic number _ used: ...estoWrite = _;.</Message>
+    <CodePrev>2701541334</CodePrev>
+    <CodeCurrent>4274265749</CodeCurrent>
+    <CodeNext>0</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Utf.inl</FileName>
+    <ErrorCode>V547</ErrorCode>
+    <Message>Expression 'input &lt;= _x_FFFF' is always true.</Message>
+    <CodePrev>2701541334</CodePrev>
+    <CodeCurrent>4274265749</CodeCurrent>
+    <CodeNext>0</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Utf.inl</FileName>
+    <ErrorCode>V112</ErrorCode>
+    <Message>Dangerous magic number _ used: Uint_ bytes[_];.</Message>
+    <CodePrev>294061481</CodePrev>
+    <CodeCurrent>961177</CodeCurrent>
+    <CodeNext>46673787</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Thread.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>1342177307</CodePrev>
+    <CodeCurrent>3111215513</CodeCurrent>
+    <CodeNext>1019035383</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Thread.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>3111215513</CodePrev>
+    <CodeCurrent>1019035383</CodeCurrent>
+    <CodeNext>193</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Thread.inl</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>1270869404</CodePrev>
+    <CodeCurrent>366059969</CodeCurrent>
+    <CodeNext>68055</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Thread.inl</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>366059969</CodePrev>
+    <CodeCurrent>68055</CodeCurrent>
+    <CodeNext>193</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>ThreadLocal.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>1342177307</CodePrev>
+    <CodeCurrent>1271161614</CodeCurrent>
+    <CodeNext>193</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Context.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>1342177307</CodePrev>
+    <CodeCurrent>2232799087</CodeCurrent>
+    <CodeNext>193</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Cursor.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>1342177307</CodePrev>
+    <CodeCurrent>1954069213</CodeCurrent>
+    <CodeNext>193</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Window.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>1342177307</CodePrev>
+    <CodeCurrent>2423830827</CodeCurrent>
+    <CodeNext>3897407061</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>Window.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>2423830827</CodePrev>
+    <CodeCurrent>3897407061</CodeCurrent>
+    <CodeNext>3587654209</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>RenderStates.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>3454603659</CodePrev>
+    <CodeCurrent>3712763895</CodeCurrent>
+    <CodeNext>1493338948</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>RenderStates.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>3712763895</CodePrev>
+    <CodeCurrent>1493338948</CodeCurrent>
+    <CodeNext>193</CodeNext>
+  </SFMLPong>
+  <SFMLPong>
+    <FileName>CircleShape.hpp</FileName>
+    <ErrorCode>V122</ErrorCode>
+    <Message>Memsize type is used in the struct/class.</Message>
+    <CodePrev>1193232409</CodePrev>
+    <CodeCurrent>21801910</CodeCurrent>
+    <CodeNext>193</CodeNext>
+  </SFMLPong>
+</NewDataSet>

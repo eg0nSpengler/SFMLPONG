@@ -1,8 +1,9 @@
+
 #include "Engine.h"
 
 int main()
 {
-	Engine eng(640, 480);
+	Engine eng;
 	eng.Run();	
 	return 0;
 }

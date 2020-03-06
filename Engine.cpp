@@ -1,104 +1,137 @@
+
+
 #include "Engine.h"
 
-Engine::Engine(int windowWidth, int windowHeight) :
-	window(sf::VideoMode(windowWidth, windowHeight), "Pong"),
-	player(sf::Vector2f(20.0f, 60.f), sf::Color::White, 2.0f, sf::Vector2f(80.0f, windowHeight / 2)),
-	aiPaddle(sf::Vector2f(20.f, 60.0f), sf::Color::White, 2.0f, sf::Vector2f(560.0f, windowHeight / 2)),
-	topBounds(sf::Vector2f(windowWidth, 0.0f), sf::Color::Transparent, 2.0f, sf::Vector2f(0.0f, 0.0f)),
-	bottomBounds(sf::Vector2f(windowWidth, 0.0f), sf::Color::Transparent, 2.0f, sf::Vector2f(0.0f, windowHeight)),
-	rightBounds(sf::Vector2f(0.0f, windowHeight), sf::Color::Transparent, 2.0f, sf::Vector2f(windowWidth, 0.0f)),
-	leftBounds(sf::Vector2f(0.0f, windowHeight), sf::Color::Transparent, 2.0f, sf::Vector2f(0.0f, 0.0f)),
-	net(sf::Vector2f(1.0, 10.0f), sf::Color::White, 1.0f, sf::Vector2f(windowWidth / 2, 0.0f)),
-	ball(sf::Vector2f(5.0f, 5.0f), sf::Color::White, 2.0f, sf::Vector2f(windowWidth / 2, windowHeight / 2))
+Engine::Engine() : window(sf::VideoMode(windowWidth, windowHeight), "Pong", sf::Style::Close)
 {
-	std::cout << "Engine object constructed!" << std::endl;
-	dTime = sf::seconds(1.0f / 60.0f);
+	std::cout << "Engine object constructed!" << "\n";
+	dTime = sf::seconds(1.0f / FRAME_RATE);
 	dTimeSinceStart = sf::Time::Zero;
-	ballAngle = (std::rand() % 360) * 2 * pi / 360;
-	player.rect.setOrigin(player.rect.getSize().x / 2, player.rect.getSize().y / 2);
-	aiPaddle.rect.setOrigin(aiPaddle.rect.getSize().x / 2, aiPaddle.rect.getSize().y / 2);
-	ball.rect.setOrigin(ball.rect.getSize().x / 2, ball.rect.getSize().y / 2);
+	ballAngle = (std::rand() % 360) * 2 * PI / 360;
+	//rectShapes = std::make_unique<std::vector<sf::RectangleShape*>>();
+	textElems = std::make_unique<std::vector<TextElement>>();
+	float windowWidthFP = static_cast<int>(std::round(windowWidth));
+	float windowHeightFP = static_cast<int>(std::round(windowHeight));
 	font.loadFromFile("G:/VSRepos/SFMLPONG/Content/bit5x3.ttf");
-	playerScore.setFont(font);
-	aiScore.setFont(font);
-	toolTip.setFont(font);
-	playerScore.setString(std::to_string(pScore));
-	playerScore.setCharacterSize(50);
-	playerScore.setFillColor(sf::Color::White);
-	playerScore.setPosition(window.getSize().x / 2 - 30.0f, 0.0f);
-	aiScore.setString(std::to_string(p2Score));
-	aiScore.setCharacterSize(50);
-	aiScore.setFillColor(sf::Color::White);
-	aiScore.setPosition(window.getSize().x / 2 + 10.0f, 0.0f);
-	toolTip.setString("Press SPACEBAR to reset the game");
-	toolTip.setCharacterSize(15);
-	toolTip.setFillColor(sf::Color::Green);
-	toolTip.setPosition(0.0f, -2.0f);
+
+	for (int i = 1; i <= NUM_TEXT_ELEMS; i++)
+	{
+		textElems->push_back(*TextElement::CreateElement());
+	}
+
+	player1 = std::make_shared<Paddle>(80.0f, windowHeightFP / 2);
+
+	player2 = std::make_shared<Paddle>(560.0f, windowHeightFP / 2);
+	ball = std::make_shared<Ball>(windowWidthFP / 2, windowHeightFP / 2);
+	topBounds = std::make_shared<Bounds>(0.0f, 0.0f, windowWidth, 0.0f);
+	bottomBounds = std::make_shared<Bounds>(0.0f, windowHeight, windowWidth, 0.0f);
+	leftBounds = std::make_shared<Bounds>(0.0f, 0.0f, 0.0f, windowHeight);
+	rightBounds = std::make_shared<Bounds>(windowWidth, 0.0f, 0.0f, windowHeight);
+
+	rectShapes.emplace_back(player1->rect);
+	rectShapes.emplace_back(&player2->rect);
+	rectShapes.emplace_back(&ball->rect);
+	rectShapes.emplace_back(&topBounds->rect);
+	rectShapes.emplace_back(&bottomBounds->rect);
+	rectShapes.emplace_back(&leftBounds->rect);
+	rectShapes.emplace_back(&rightBounds->rect);
+
+
+	playerScore = &textElems->at(0);
+	playerScore->setFont(font);
+	playerScore->setString(std::to_string(pScore));
+	playerScore->setPosition(window.getSize().x / 2 - 30.0f, 0.0f);
+
+	aiScore = &textElems->at(1);
+	aiScore->setFont(font);
+	aiScore->setString(std::to_string(p2Score));
+	aiScore->setPosition(window.getSize().x / 2 + 10.0f, 0.0f);
+
+	toolTip1 = &textElems->at(2);
+	toolTip2 = &textElems->at(3);
+	
+	toolTip1->setFont(font);
+	toolTip1->setFillColor(sf::Color::Green);
+	toolTip1->setCharacterSize(TEXT_MIN_SIZE);
+	toolTip1->setString("Press SPACEBAR to reset the game");
+	toolTip1->setPosition(sf::Vector2f(0.0f, -2.0f));
+
+	toolTip2->setFont(font);
+	toolTip2->setFillColor(sf::Color::Cyan);
+	toolTip2->setCharacterSize(TEXT_MIN_SIZE);
+	toolTip2->setString("Press Esc/Escape to quit");
+	toolTip2->setPosition(sf::Vector2f(0.0f, 12.0f));
+
+	player1->rect.setOrigin(player1->rect.getSize().x / 2, player1->rect.getSize().y / 2);
+	player2->rect.setOrigin(player2->rect.getSize().x / 2, player2->rect.getSize().y / 2);
+	ball->rect.setOrigin(ball->rect.getSize().x / 2, ball->rect.getSize().y / 2);
 }
 
 Engine::~Engine()
 {
-	std::cout << "Engine object deleted!" << std::endl;
+	std::cout << "Engine object deleted!" << "\n";
 }
 
-void Engine::Handle_Input(sf::Time deltaTime)
+void Engine::Handle_Input(const sf::Time& deltaTime)
 {
 	sf::Event event;
 	while (window.pollEvent(event))
 	{
-
-		if (event.key.code == sf::Keyboard::Escape)
+		switch (event.key.code)
 		{
+			case sf::Keyboard::Escape:
 			window.close();
-		}
+			break;
 
-		if (event.key.code == sf::Keyboard::Space)
-		{
+			case sf::Keyboard::Space:
 			ResetGame();
-		}
+			break;
 
+			default:
+			break;
+		}
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		if (Handle_Collisons(player, topBounds) == false)
+		if (Handle_Collisons(player1->rect, topBounds->rect) == false)
 		{
-			player.rect.move(0.0f, -1.0f * paddleSpeed * deltaTime.asSeconds());
+			player1->rect.move(0.0f, -1.0f * PADDLE_SPEED * deltaTime.asSeconds());
 		}
-		player.rect.move(0.0f, 0.0f);
+		player1->rect.move(0.0f, 0.0f);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		if (Handle_Collisons(player, bottomBounds) == false)
+		if (Handle_Collisons(player1->rect, bottomBounds->rect) == false)
 		{
-			player.rect.move(0.0f, 1.0f * paddleSpeed * deltaTime.asSeconds());
+			player1->rect.move(0.0f, 1.0f * PADDLE_SPEED * deltaTime.asSeconds());
 		}
-		player.rect.move(0.0f, 0.00f);
+		player1->rect.move(0.0f, 0.00f);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		if (Handle_Collisons(aiPaddle, topBounds) == false)
+		if (Handle_Collisons(player2->rect, topBounds->rect) == false)
 		{
-			aiPaddle.rect.move(0.0f, -1.0f * paddleSpeed * deltaTime.asSeconds());
+			player2->rect.move(0.0f, -1.0f * PADDLE_SPEED * deltaTime.asSeconds());
 		}
-		aiPaddle.rect.move(0.0f, 0.0f);
+		player2->rect.move(0.0f, 0.0f);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		if (Handle_Collisons(aiPaddle, bottomBounds) == false)
+		if (Handle_Collisons(player2->rect, bottomBounds->rect) == false)
 		{
-			aiPaddle.rect.move(0.0f, 1.0f * paddleSpeed * deltaTime.asSeconds());
+			player2->rect.move(0.0f, 1.0f * PADDLE_SPEED * deltaTime.asSeconds());
 		}
-		aiPaddle.rect.move(0.0f, 0.0f);
+		player2->rect.move(0.0f, 0.0f);
 	}
 }
 
-bool Engine::Handle_Collisons(Actor actA, Actor actB)
+bool Engine::Handle_Collisons(const sf::RectangleShape& rectA, const sf::RectangleShape& rectB)
 {
-	if (actA.rect.getGlobalBounds().intersects(actB.rect.getGlobalBounds()))
+	if (rectA.getGlobalBounds().intersects(rectB.getGlobalBounds()))
 	{
 		return true;
 	}
@@ -111,15 +144,15 @@ bool Engine::Handle_Collisons(Actor actA, Actor actB)
 void Engine::AIUpdate()
 {
 
-	aiPaddle.rect.move(0.0f, rightPaddleSpeed);
+	player2->rect.move(0.0f, rightPaddleSpeed);
 
-	if (ball.rect.getPosition().y > aiPaddle.rect.getPosition().y)
+	if (ball->rect.getPosition().y > player2->rect.getPosition().y)
 	{
-		rightPaddleSpeed = paddleSpeed;
+		rightPaddleSpeed = PADDLE_SPEED;
 	}
-	else if(ball.rect.getPosition().y < aiPaddle.rect.getPosition().y)
+	else if (ball->rect.getPosition().y < player2->rect.getPosition().y)
 	{
-		rightPaddleSpeed = -paddleSpeed;
+		rightPaddleSpeed = -PADDLE_SPEED;
 	}
 	else
 	{
@@ -127,57 +160,58 @@ void Engine::AIUpdate()
 	}
 }
 
-void Engine::Update(sf::Time deltaTime)
+void Engine::Update(const sf::Time& deltaTime)
 {
-	ball.rect.move(std::cos(ballAngle) * ballSpeed * deltaTime.asSeconds(), std::sin(ballAngle) * ballSpeed * deltaTime.asSeconds());
-	if (Handle_Collisons(ball, player) == true)
+	ball->rect.move(std::cos(ballAngle) * BALL_SPEED * deltaTime.asSeconds(), std::sin(ballAngle) * BALL_SPEED * deltaTime.asSeconds());
+
+	if (Handle_Collisons(ball->rect, player1->rect) == true)
 	{
-		ballAngle = pi - ballAngle + (std::rand() % 20) * pi / 180;
+		ballAngle = PI - ballAngle + (std::rand() % 20) * PI / 180;
 	}
 
-	if (Handle_Collisons(ball, aiPaddle) == true)
+	if (Handle_Collisons(ball->rect, player2->rect) == true)
 	{
-		ballAngle = pi - ballAngle + (std::rand() % 20) * pi / 180;
+		ballAngle = PI - ballAngle + (std::rand() % 20) * PI / 180;
 	}
 
-	if (Handle_Collisons(ball, topBounds) == true)
+	if (Handle_Collisons(ball->rect, topBounds->rect) == true)
 	{
 		ballAngle = -ballAngle;
 	}
 
-	if (Handle_Collisons(ball, bottomBounds) == true)
+	if (Handle_Collisons(ball->rect, bottomBounds->rect) == true)
 	{
 		ballAngle = ++ballAngle;
 	}
 
-	if (Handle_Collisons(ball, leftBounds) == true)
+	if (Handle_Collisons(ball->rect, leftBounds->rect) == true)
 	{
 		ResetBall();
 		p2Score++;
-		aiScore.setString(std::to_string(p2Score));
+		aiScore->setString(std::to_string(p2Score));
 	}
 
-	if(Handle_Collisons(ball, rightBounds) == true)
+	if (Handle_Collisons(ball->rect, rightBounds->rect) == true)
 	{
 		ResetBall();
 		pScore++;
-		playerScore.setString(std::to_string(pScore));
+		playerScore->setString(std::to_string(pScore));
 	}
-	
+
 }
 
 void Engine::ResetBall()
 {
-	ball.rect.setPosition(window.getSize().x / 2, window.getSize().y / 2);
-	ballAngle = pi - ballAngle + (std::rand() % 20) * pi / 180;
+	ball->rect.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+	ballAngle = PI - ballAngle + (std::rand() % 20) * PI / 180;
 }
 
 void Engine::ResetGame()
 {
 	pScore = 0;
 	p2Score = 0;
-	playerScore.setString(std::to_string(pScore));
-	aiScore.setString(std::to_string(p2Score));
+	playerScore->setString(std::to_string(pScore));
+	aiScore->setString(std::to_string(p2Score));
 	ResetBall();
 }
 
@@ -188,18 +222,21 @@ void Engine::Render()
 	net[1].position = sf::Vector2f(window.getSize().x / 2, window.getSize().y);
 	net[0].color = sf::Color::White;
 	net[1].color = sf::Color::White;
+
 	window.clear(sf::Color::Black);
-	window.draw(playerScore);
-	window.draw(aiScore);
-	window.draw(toolTip);
-	window.draw(player.rect);
-	window.draw(aiPaddle.rect);
-	window.draw(topBounds.rect);
-	window.draw(bottomBounds.rect);
-	window.draw(rightBounds.rect);
-	window.draw(leftBounds.rect);
+
+	for (const auto tx : *textElems)
+	{
+		window.draw(tx);
+	}
+
+	for (const auto rect : rectShapes)
+	{
+		window.draw(*rect);
+	}
+
+
 	window.draw(net);
-	window.draw(ball.rect);
 	window.display();
 }
 
@@ -218,4 +255,3 @@ void Engine::Run()
 	}
 
 }
-
