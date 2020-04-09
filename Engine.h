@@ -2,45 +2,56 @@
 #include <memory>
 #include <iostream>
 #include <cmath>
-#include <string.h>
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "GameDefs.h"
 #include "Paddle.h"
 #include "Ball.h"
-#include "Bounds.h"
 #include "TextElement.h"
-
-enum BOUNDS
-{
-	TOP,
-	BOTTOM,
-	LEFT,
-	RIGHT
-};
 
 class Engine
 {
+
+	enum class SCOREBOUND
+	{
+		LEFT,
+		RIGHT
+	};
+
+	struct Bound
+	{
+		Bound(float x, float y, float width, float height)
+		{
+			rect.setPosition(x, y);
+			rect.setSize(sf::Vector2f(width, height));
+			rect.setFillColor(sf::Color::Transparent);
+		}
+		sf::RectangleShape rect;
+	};
+
 public:
 	Engine();
 	~Engine();
-	void Handle_Input(const sf::Time& deltaTime);
-	void AIUpdate();
+	void HandleInput(const sf::Time& deltaTime);
 	void Update(const sf::Time& deltaTime);
-	void ResetBall();
-	void ResetGame();
+	void GameReset();
+	void GameEnd();
 	void Render();
 	void Run();
-	bool Handle_Collisons(const sf::RectangleShape& rectA, const sf::RectangleShape& rectB);
+	void HandleCollisons();
+	void CheckScore();
+	void UpdateScore(Engine::SCOREBOUND bound);
+	bool CheckCollision(const sf::RectangleShape& rectA, const sf::RectangleShape& rectB);
 
 private:
-	const int windowWidth = WINDOW_WIDTH;
-	const int windowHeight = WINDOW_HEIGHT;
-	int pScore = 0;
-	int p2Score = 0;
-	float rightPaddleSpeed = 0.0f;
-	float ballAngle = 0.0f;
+	unsigned int leftScore;
+	unsigned int rightScore;
+	unsigned int maxScore;
+	bool IsGameRunning;
+	float windowWidthFP; /*Window Width casted to float*/
+	float windowHeightFP; /*Window Height casted to float*/
+	float ballAngle;
 
 private:
 	sf::RenderWindow window;
@@ -48,20 +59,18 @@ private:
 	sf::Clock clock;
 	sf::Time dTime;
 	sf::Time dTimeSinceStart;
+	sf::String leftScoreString;
+	sf::String rightScoreString;
 
 private:
-	std::vector<std::shared_ptr<sf::RectangleShape>> rectShapes;
-	std::shared_ptr<std::vector<TextElement>> textElems;
 	std::shared_ptr<Paddle> player1;
 	std::shared_ptr<Paddle> player2;
 	std::shared_ptr<Ball> ball;
-	std::shared_ptr<Bounds> topBounds;
-	std::shared_ptr<Bounds> bottomBounds;
-	std::shared_ptr<Bounds> leftBounds;
-	std::shared_ptr<Bounds> rightBounds;
-	TextElement* playerScore;
-	TextElement* aiScore;
-	TextElement* toolTip1;
-	TextElement* toolTip2;
+	std::shared_ptr<Bound> topBound;
+	std::shared_ptr<Bound> bottomBound;
+	std::shared_ptr<Bound> leftBound;
+	std::shared_ptr<Bound> rightBound;
+
+	std::vector<std::shared_ptr<TextElement>> textElems;
 };
 

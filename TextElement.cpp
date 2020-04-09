@@ -10,7 +10,9 @@ TextElement::TextElement(const sf::Font& font, const sf::Color& color, const uns
 	setPosition(pos);
 }
 
-TextElement* TextElement::CreateElement()
+TextElement::TextElement(const sf::Font& font, sf::String& string, sf::Vector2f pos) : font(font), string(string), pos(pos)
 {
-	return new TextElement;
+	setFont(font);
+	setString(string);
+	setPosition(pos);
 }

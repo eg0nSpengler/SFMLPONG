@@ -1,13 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include "GameDefs.h"
 class Ball
 {
 public:
+	Ball() = default;
 	Ball(float x, float y);
-	void Update();
+	void Reset(const sf::RenderWindow& window);
+
 public:
 	sf::RectangleShape rect;
+
 };
 

@@ -10,8 +10,9 @@
 #define TEXT_MAX_SIZE 32
 #define PADDLE_THICKNESS 2.0f
 #define PADDLE_SPEED 600.0f
-#define BALL_SPEED 300.0f
+#define BALL_SPEED 350.0f
 #define BALL_RADIUS 10.0f
+#define SCORE_MAX 11
 #define NUM_ACTORS 7
 #define NUM_TEXT_ELEMS 4
 

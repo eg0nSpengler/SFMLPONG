@@ -85,18 +85,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="Bounds.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="TextElement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
-    <ClInclude Include="Bounds.h" />
     <ClInclude Include="Engine.h" />
-    <ClInclude Include="Actor.h" />
     <ClInclude Include="GameDefs.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="TextElement.h" />
