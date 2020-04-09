@@ -15,4 +15,6 @@ It's a local 2 player clone, no AI is currently included.
 
 * Reset Game - Spacebar
 
+* Exit Game - Escape
+
 Enjoy.
