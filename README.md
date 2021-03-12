@@ -1,5 +1,5 @@
 # SFMLPONG
-A Pong clone built in [SFML](https://www.sfml-dev.org/), a personal project by Anthony Brown.
+A Pong clone built in [SFML](https://www.sfml-dev.org/)
 
 ![enter image description here](https://files.catbox.moe/jvlysz.gif)
 ## How to Play 
